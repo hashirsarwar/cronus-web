@@ -1,0 +1,31 @@
+# Host dependencies and build output. The image installs and builds its own.
+node_modules/
+dist/
+
+# Version control, editor state, and continuous integration configuration. The build reads none of
+# these; excluding the workflows also stops a CI edit from invalidating the cached COPY layer.
+.git/
+.gitignore
+.github/
+.vs/
+.idea/
+.vscode/
+*.log
+
+# Local configuration. Note that this project reads no VITE_* variables at build time, so nothing
+# from .env is needed; if that ever changes, pass it as a build argument instead of a file.
+.env
+.env.*
+
+# The test suite does not run during an image build.
+coverage/
+
+# Documentation and OS noise, not needed at run time.
+README.md
+*.md
+.DS_Store
+
+# Not needed by any COPY instruction, so they stay out of the image. The daemon still receives them,
+# because it needs the Dockerfile to build at all.
+Dockerfile
+.dockerignore
